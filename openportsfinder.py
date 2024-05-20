@@ -1,6 +1,5 @@
 import socket
 import concurrent.futures
-import ThreadPoolExecutor
 import threading
 
 def scan_port(ip, port):
